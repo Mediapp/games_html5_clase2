@@ -10,8 +10,24 @@
 			}
 
 			canvas {
+				display: none;
 				border-style: solid;
 				border-color: white;
+			}
+			
+			#loading-contenedor{
+				color: white;
+				width:70%;
+				margin-right: 15%;
+				margin-left: 15%;
+			}
+			
+			#loading-barra{
+				
+				background-color:white;
+				height:50px;
+				width: 30%;
+				
 			}
 
 		</style>
@@ -19,6 +35,15 @@
 	</head>
 	<body>
 
+		<div id="loading-contenedor">
+			
+			<h2>Cargando...</h2>
+			<div id="loading-barra">
+				
+			</div>
+			
+		</div>
+		
 		<canvas id="juego" height="384" width="600">
 			Tu navegador no soporta Canvas
 		</canvas>

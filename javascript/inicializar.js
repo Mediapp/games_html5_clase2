@@ -2,11 +2,15 @@ var Q = new Quintus({
 	development : true
 });
 
-Q.include("Scenes, Sprites, 2D, Input, Anim, Touch");
+Q.include("Scenes, Sprites, 2D, Input, Anim, Touch, Audio");
+Q.enableSound();
 Q.setup("juego");
 Q.controls();
 
-Q.load("mapa_escena1.tmx, mosaicos_escenario.png, mosaicos_mario_enano.png, mosaicos_enemigos_32x32.png, mosaicos_enemigos_32x46.png", function() {
+var recursos = "mapa_escena1.tmx, mosaicos_escenario.png, mosaicos_mario_enano.png, mosaicos_enemigos_32x32.png, mosaicos_enemigos_32x46.png"; 
+recursos = recursos + ", tema_superficie.mp3, salto_enano.mp3, mario_muere.mp3, patada.mp3";
+
+Q.load(recursos, function() {
 
 	Q.sheet("escenario", "mosaicos_escenario.png", {
 		tileH : 32,
@@ -29,4 +33,17 @@ Q.load("mapa_escena1.tmx, mosaicos_escenario.png, mosaicos_mario_enano.png, mosa
 	});
 
 	Q.stageScene("escena1");
-});
+},
+{
+	progressCallback: function(leidos, total){
+		
+		var porcentaje = Math.floor((leidos / total) * 100 ) + "%";
+		$("#loading-barra").css("width", porcentaje);
+		
+		if(leidos === total){
+			$("#loading-contenedor").remove();
+			$("#juego").css("display", "block");
+		}
+	}
+}
+);

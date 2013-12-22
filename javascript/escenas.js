@@ -54,4 +54,8 @@ Q.scene("escena1", function(stage) {
 		x : 450,
 		y : alturaPiso
 	}));
+	
+	Q.audio.play("tema_superficie.mp3", {
+		loop: true
+	});
 });
